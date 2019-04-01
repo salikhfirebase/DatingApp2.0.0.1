@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>splash_url</key>
+        <!--TODO: add your default value-->
+        <value>splash_url</value>
+    </entry>
+    <entry>
+        <key>show_in</key>
+        <value>web_view</value>
+    </entry>
+    <entry>
+        <key>welcome_message</key>
+        <!--TODO: add your default value-->
+        <value>https://www.google.com</value>
+    </entry>
+</defaultsMap>
