@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         request.executeAsync()
     }
 
-    fun onCreateAccButtonClick() {
+    fun onCreateAccButtonClick(v: View) {
 
         intent1 = Intent(this, QuestionnaireActivity::class.java)
         intent1.putExtra("action", "registration")
@@ -145,7 +146,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun onSignInButtonClick() {
+    fun onSignInButtonClick(v: View) {
         intent1 = Intent(this, QuestionnaireActivity::class.java)
         intent1.putExtra("action", "sign_in")
         startActivity(intent1)
