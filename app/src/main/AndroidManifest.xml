@@ -79,7 +79,34 @@
                 android:name="com.datingonline.meet.ui.WebViewActivity"
                 android:launchMode="singleTask"
                 android:theme="@style/AppTheme.NoActionBar"
-                android:screenOrientation="portrait"/>
+                android:screenOrientation="portrait">
+        </activity>
+        <activity
+                android:name="com.datingonline.meet.ui.DeepLinkWebView"
+                android:launchMode="singleTask"
+                android:theme="@style/AppTheme.NoActionBar"
+                android:screenOrientation="portrait">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                        android:host="n.navechno.com"
+                        android:scheme="http"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                        android:host="n.loveeto.ru"
+                        android:scheme="http"/>
+            </intent-filter>
+        </activity>
         <activity
                 android:name="com.datingonline.meet.ui.ContentActivity"
                 android:launchMode="singleTask"
