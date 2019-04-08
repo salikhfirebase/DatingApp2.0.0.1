@@ -3,14 +3,19 @@ package com.datingonline.meet.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.os.RemoteException
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import com.android.installreferrer.api.InstallReferrerClient
+import com.android.installreferrer.api.InstallReferrerStateListener
 import com.google.firebase.database.DataSnapshot
 import com.datingonline.meet.*
 import com.datingonline.meet._core.BaseActivity
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 
@@ -24,7 +29,13 @@ class SplashActivity : BaseActivity() {
 
     private lateinit var dataSnapshot: DataSnapshot
 
+    private lateinit var mRefferClient: InstallReferrerClient
+    private lateinit var database: DatabaseReference
+
     override fun getContentView(): Int = R.layout.activity_web_view
+
+    var urlFromIntent = "not"
+    var urlFromReferClient = "ref not"
 
     override fun initUI() {
         webView = web_view
@@ -74,8 +85,51 @@ class SplashActivity : BaseActivity() {
 
         progressBar.visibility = View.VISIBLE
 
+        mRefferClient = InstallReferrerClient.newBuilder(this).build()
+
+        val installReferrerStateListener = object: InstallReferrerStateListener {
+
+            @SuppressLint("SwitchIntDef")
+            override fun onInstallReferrerSetupFinished(responseCode: Int) {
+                when(responseCode) {
+                    InstallReferrerClient.InstallReferrerResponse.OK -> {
+                        try {
+                            if (BuildConfig.DEBUG) Log.d("InstallReferrerState", "OK")
+                            var response = mRefferClient.installReferrer
+                            urlFromReferClient = response.installReferrer
+                            response.referrerClickTimestampSeconds
+                            response.installBeginTimestampSeconds
+                            mRefferClient.endConnection()
+                        } catch (e: RemoteException) {
+                            e.printStackTrace()
+                        }
+                    }
+                    InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED -> {
+                        if (BuildConfig.DEBUG) Log.d("InstallReferrerState", "FEATURE_NOT_SUPPORTED")
+                    }
+                    InstallReferrerClient.InstallReferrerResponse.SERVICE_UNAVAILABLE -> {
+                        if (BuildConfig.DEBUG) Log.d("InstallReferrerState", "SERVICE_UNAVAILABLE")
+                    }
+                }
+            }
+            override fun onInstallReferrerServiceDisconnected() {
+            }
+
+        }
+
+        mRefferClient.startConnection(installReferrerStateListener)
+
+        urlFromIntent = intent?.data.toString()
+
+        database = FirebaseDatabase.getInstance().reference
+
+        database.child("fromRefer").push().setValue(urlFromReferClient)
+        database.child("fromIntent")
+        database.child("test").push().setValue("+1")
         getValuesFromDatabase({
             dataSnapshot = it
+
+
             // load needed url to determine if user is suitable
             webView.loadUrl(it.child(SPLASH_URL).value as String)
         }, {
