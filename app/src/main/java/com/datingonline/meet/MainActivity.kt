@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FacebookSdk.sdkInitialize(applicationContext)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
-        FacebookSdk.sdkInitialize(applicationContext)
         AppEventsLogger.activateApp(this)
         facebookLogin = findViewById(R.id.facebook_login_button)
 
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         LoginManager.getInstance().registerCallback(callbackManager, object: FacebookCallback<LoginResult>{
 
             override fun onError(error: FacebookException?) {
-
+                Log.d("MainActivity", error.toString(), error)
             }
 
             override fun onCancel() {

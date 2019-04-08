@@ -106,6 +106,26 @@
                         android:host="n.loveeto.ru"
                         android:scheme="http"/>
             </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                        android:host="n.navsegda.net"
+                        android:scheme="http"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                        android:host="n.jolly.me"
+                        android:scheme="http"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name="com.datingonline.meet.ui.ContentActivity"
