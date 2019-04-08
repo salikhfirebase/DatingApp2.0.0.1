@@ -27,6 +27,7 @@ import com.datingonline.meet.EXTRA_TASK_URL
 import com.datingonline.meet.Model.Conversion
 import com.datingonline.meet.R
 import com.datingonline.meet._core.BaseActivity
+import com.google.firebase.analytics.FirebaseAnalytics
 import im.delight.android.webview.AdvancedWebView
 import kotlinx.android.synthetic.main.activity_web_view.*
 import java.io.File
@@ -47,6 +48,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
     var mCameraPhotoPath: String? = null
     val PERMISSION_CODE = 1000
     var size: Long = 0
+    var firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
 
     override fun getContentView(): Int = R.layout.activity_web_view
@@ -58,7 +60,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
 
     private var conversions: MutableList<Conversion> = mutableListOf()
     override fun setUI() {
-        getValuesFromDatabase({ dataSnapshot ->
+       /* getValuesFromDatabase({ dataSnapshot ->
             val values = dataSnapshot.child(CONVERSION_DATA)
             for (conversionSnapshot in values.children) {
                 val conversion = conversionSnapshot.getValue(Conversion::class.java)
@@ -67,7 +69,8 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
             }
 
             webView.loadUrl(intent?.data.toString())
-        })
+        })*/
+        webView.loadUrl(intent?.data.toString())
         logEvent("web-view-screen")
         progressBar.visibility = View.VISIBLE
 
@@ -176,13 +179,17 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 // TODO: add values to determine if url is for conversion response, you can add these values to firebase database
-                url?.let { urlSafe ->
+                /*url?.let { urlSafe ->
                     logEventIfUrlIsSuitable(urlSafe)
-                }
+                }*/
 
                 progressBar.visibility = View.GONE
             }
         }
+        val bundle = Bundle()
+        bundle.putString("from", "deep link")
+
+        firebaseAnalytics.logEvent("reg_open", bundle)
         verifyStoragePermissions(this)
     }
 
@@ -193,11 +200,13 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
                 val args = uri.queryParameterNames
                 val bundle = Bundle()
 
-                args.forEach { key ->
+                /*args.forEach { key ->
                     bundle.putString(key, uri.getQueryParameter(key))
-                }
+                }*/
 
-                logEvent(it.conversionEvent!!, bundle)
+                bundle.putString("from", "deep link")
+
+                logEvent("reg_open", bundle)
             }
         }
     }
