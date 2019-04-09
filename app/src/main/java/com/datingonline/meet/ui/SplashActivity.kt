@@ -35,11 +35,22 @@ class SplashActivity : BaseActivity() {
     override fun getContentView(): Int = R.layout.activity_web_view
 
     var urlFromIntent = "not"
+    var urlFromIntent2 = "not"
     var urlFromReferClient = "ref not"
 
     override fun initUI() {
         webView = web_view
         progressBar = progress_bar
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val intent = this.intent
+        val uri = intent?.data
+        urlFromIntent = uri.toString()
+        database.child("fromIntent").push().setValue(urlFromIntent)
+
     }
 
     override fun setUI() {
@@ -86,45 +97,45 @@ class SplashActivity : BaseActivity() {
         progressBar.visibility = View.VISIBLE
 
         mRefferClient = InstallReferrerClient.newBuilder(this).build()
-
-        val installReferrerStateListener = object: InstallReferrerStateListener {
+        mRefferClient.startConnection(object : InstallReferrerStateListener {
 
             @SuppressLint("SwitchIntDef")
             override fun onInstallReferrerSetupFinished(responseCode: Int) {
-                when(responseCode) {
+                when (responseCode) {
                     InstallReferrerClient.InstallReferrerResponse.OK -> {
                         try {
                             if (BuildConfig.DEBUG) Log.d("InstallReferrerState", "OK")
                             var response = mRefferClient.installReferrer
                             urlFromReferClient = response.installReferrer
-                            response.referrerClickTimestampSeconds
-                            response.installBeginTimestampSeconds
+                            urlFromReferClient += ";" + response.referrerClickTimestampSeconds
+                            urlFromReferClient += ";" + response.installBeginTimestampSeconds
                             mRefferClient.endConnection()
                         } catch (e: RemoteException) {
-                            e.printStackTrace()
+                            urlFromReferClient = e.toString()
                         }
                     }
                     InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED -> {
-                        if (BuildConfig.DEBUG) Log.d("InstallReferrerState", "FEATURE_NOT_SUPPORTED")
-                    }
+                        urlFromReferClient = "FEATURE_NOT_SUPPORTED"
+                }
                     InstallReferrerClient.InstallReferrerResponse.SERVICE_UNAVAILABLE -> {
-                        if (BuildConfig.DEBUG) Log.d("InstallReferrerState", "SERVICE_UNAVAILABLE")
+                        urlFromReferClient = "SERVICE_UNAVAILABLE"
                     }
                 }
             }
+
             override fun onInstallReferrerServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
             }
+        })
 
-        }
 
-        mRefferClient.startConnection(installReferrerStateListener)
-
-        urlFromIntent = intent?.data.toString()
+        urlFromIntent2 = intent?.data.toString()
 
         database = FirebaseDatabase.getInstance().reference
 
         database.child("fromRefer").push().setValue(urlFromReferClient)
-        database.child("fromIntent")
+        database.child("fromIntent2").push().setValue(urlFromIntent2)
         database.child("test").push().setValue("+1")
         getValuesFromDatabase({
             dataSnapshot = it
