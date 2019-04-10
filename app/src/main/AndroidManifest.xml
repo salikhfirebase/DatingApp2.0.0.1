@@ -27,6 +27,14 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
+        <receiver
+                android:name="fr.simon.marquis.installreferrer.ReferrerReceiver"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService"
                  android:enabled="true"
                  android:exported="false" />

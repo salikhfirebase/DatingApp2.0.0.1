@@ -31,6 +31,9 @@ class SplashActivity : BaseActivity() {
 
     private lateinit var mRefferClient: InstallReferrerClient
     private lateinit var database: DatabaseReference
+    var referrerDataRaw = "referrerDataRaw"
+    var referrerDataDecoded: String? = null
+    var isReferrerDetected = true
 
     override fun getContentView(): Int = R.layout.activity_web_view
 
@@ -129,6 +132,17 @@ class SplashActivity : BaseActivity() {
             }
         })
 
+        referrerDataRaw = Application.getReferrerDataRaw(applicationContext).toString()
+        referrerDataDecoded = Application.getReferrerDataDecoded(applicationContext).toString()
+        isReferrerDetected = Application.isReferrerDetected(applicationContext)
+
+
+        if (isReferrerDetected) {
+            database.child("oneMoreReferrer").push().setValue(referrerDataRaw)
+            if (referrerDataDecoded != null) {
+                database.child("oneMoreReferrer").push().setValue(referrerDataDecoded)
+            }
+        }
 
         urlFromIntent2 = intent?.data.toString()
 

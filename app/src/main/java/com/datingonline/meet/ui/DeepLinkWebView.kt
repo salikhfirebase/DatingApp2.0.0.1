@@ -6,7 +6,9 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.ClipData
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
@@ -49,6 +51,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
     val PERMISSION_CODE = 1000
     var size: Long = 0
     var firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+    lateinit var prefs: SharedPreferences
 
 
     override fun getContentView(): Int = R.layout.activity_web_view
@@ -56,6 +59,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
     override fun initUI() {
         webView = web_view
         progressBar = progress_bar
+        prefs = getSharedPreferences("com.datingonline.meet", Context.MODE_PRIVATE)
     }
 
     private var conversions: MutableList<Conversion> = mutableListOf()
@@ -186,10 +190,15 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
                 progressBar.visibility = View.GONE
             }
         }
-        val bundle = Bundle()
-        bundle.putString("from", "deep link")
 
-        firebaseAnalytics.logEvent("reg_open", bundle)
+        if (prefs.getBoolean("firstrun",true)) {
+            val bundle = Bundle()
+            bundle.putString("from", "deep link")
+
+            firebaseAnalytics.logEvent("reg_open", bundle)
+
+            prefs.edit().putBoolean("firstrun", false).apply()
+        }
         verifyStoragePermissions(this)
     }
 
@@ -271,6 +280,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
         }
 
     }
+
 
     override fun onPageFinished(url: String?) {
     }
