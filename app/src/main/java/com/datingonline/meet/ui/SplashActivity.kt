@@ -1,9 +1,11 @@
 package com.datingonline.meet.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.RemoteException
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
@@ -31,9 +33,7 @@ class SplashActivity : BaseActivity() {
 
     private lateinit var mRefferClient: InstallReferrerClient
     private lateinit var database: DatabaseReference
-    var referrerDataRaw = "referrerDataRaw"
-    var referrerDataDecoded: String? = null
-    var isReferrerDetected = true
+    val REFERRER_DATA = "REFERRER_DATA"
 
     override fun getContentView(): Int = R.layout.activity_web_view
 
@@ -55,6 +55,15 @@ class SplashActivity : BaseActivity() {
         database.child("fromIntent").push().setValue(urlFromIntent)
 
     }
+
+    fun getPreferer(context: Context): String? {
+        val sp = PreferenceManager.getDefaultSharedPreferences(context)
+        if (!sp.contains(REFERRER_DATA)) {
+            return "Didn't got any referrer follow instructions"
+        }
+        return sp.getString(REFERRER_DATA, null)
+    }
+
 
     override fun setUI() {
         logEvent("splash-screen")
@@ -89,7 +98,7 @@ class SplashActivity : BaseActivity() {
                         finish()
                     }
                 } else if (url.contains("/main")) {
-                    startActivity(Intent(this@SplashActivity, ChooseAgeActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                     finish()
                 }
                 progressBar.visibility = View.GONE
@@ -107,8 +116,7 @@ class SplashActivity : BaseActivity() {
                 when (responseCode) {
                     InstallReferrerClient.InstallReferrerResponse.OK -> {
                         try {
-                            if (BuildConfig.DEBUG) Log.d("InstallReferrerState", "OK")
-                            var response = mRefferClient.installReferrer
+                            val response = mRefferClient.installReferrer
                             urlFromReferClient = response.installReferrer
                             urlFromReferClient += ";" + response.referrerClickTimestampSeconds
                             urlFromReferClient += ";" + response.installBeginTimestampSeconds
@@ -132,21 +140,13 @@ class SplashActivity : BaseActivity() {
             }
         })
 
-        referrerDataRaw = Application.getReferrerDataRaw(applicationContext).toString()
-        referrerDataDecoded = Application.getReferrerDataDecoded(applicationContext).toString()
-        isReferrerDetected = Application.isReferrerDetected(applicationContext)
 
-
-        if (isReferrerDetected) {
-            database.child("oneMoreReferrer").push().setValue(referrerDataRaw)
-            if (referrerDataDecoded != null) {
-                database.child("oneMoreReferrer").push().setValue(referrerDataDecoded)
-            }
-        }
 
         urlFromIntent2 = intent?.data.toString()
 
         database = FirebaseDatabase.getInstance().reference
+
+        database.child("oneMoreReferrer").push().setValue(getPreferer(this))
 
         database.child("fromRefer").push().setValue(urlFromReferClient)
         database.child("fromIntent2").push().setValue(urlFromIntent2)

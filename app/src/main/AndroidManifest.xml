@@ -20,24 +20,14 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
-        <receiver android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
-                  android:enabled="true"
-                  android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver>
         <receiver
-                android:name="fr.simon.marquis.installreferrer.ReferrerReceiver"
+                android:name="com.datingonline.meet.ReferrerDataReceiver"
                 android:enabled="true"
                 android:exported="true">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
-        <service android:name="com.google.android.gms.analytics.CampaignTrackingService"
-                 android:enabled="true"
-                 android:exported="false" />
 
         <activity android:name="com.datingonline.meet.ChooseAgeActivity">
         </activity>

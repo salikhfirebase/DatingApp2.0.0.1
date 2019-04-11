@@ -1,9 +1,11 @@
 package com.datingonline.meet
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var db: AppDatabase
     var userEmail: String = "didn't get"
     var handler = Handler()
+    val REFERRER_DATA = "REFERRER_DATA"
 
 
 
@@ -150,6 +153,14 @@ class MainActivity : AppCompatActivity() {
         intent1 = Intent(this, QuestionnaireActivity::class.java)
         intent1.putExtra("action", "sign_in")
         startActivity(intent1)
+    }
+
+    fun getPreferer(context: Context): String? {
+        val sp = PreferenceManager.getDefaultSharedPreferences(context)
+        if (!sp.contains(REFERRER_DATA)) {
+            return "Didn't got any referrer follow instructions"
+        }
+        return sp.getString(REFERRER_DATA, null)
     }
 
 }

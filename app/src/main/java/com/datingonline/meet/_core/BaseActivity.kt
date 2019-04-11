@@ -1,5 +1,6 @@
 package com.datingonline.meet._core
 
+import android.content.Context
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,7 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun initUI()
 
     abstract fun setUI()
+
 
     @Deprecated(message = "use getValueFromDatabase")
     fun fetchRemoteConfig(
