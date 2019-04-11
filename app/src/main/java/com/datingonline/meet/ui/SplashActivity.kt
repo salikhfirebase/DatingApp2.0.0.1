@@ -89,7 +89,7 @@ class SplashActivity : BaseActivity() {
                         finish()
                     }
                 } else if (url.contains("/main")) {
-                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, ChooseAgeActivity::class.java))
                     finish()
                 }
                 progressBar.visibility = View.GONE

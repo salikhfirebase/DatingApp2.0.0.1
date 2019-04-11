@@ -23,6 +23,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.datingonline.meet.CONVERSION_DATA
 import com.datingonline.meet.EXTRA_TASK_URL
@@ -50,7 +51,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
     var mCameraPhotoPath: String? = null
     val PERMISSION_CODE = 1000
     var size: Long = 0
-    var firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+    lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var prefs: SharedPreferences
 
 
@@ -60,6 +61,7 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
         webView = web_view
         progressBar = progress_bar
         prefs = getSharedPreferences("com.datingonline.meet", Context.MODE_PRIVATE)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
     }
 
     private var conversions: MutableList<Conversion> = mutableListOf()
@@ -196,7 +198,6 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
             bundle.putString("from", "deep link")
 
             firebaseAnalytics.logEvent("reg_open", bundle)
-
             prefs.edit().putBoolean("firstrun", false).apply()
         }
         verifyStoragePermissions(this)
@@ -213,9 +214,6 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
                     bundle.putString(key, uri.getQueryParameter(key))
                 }*/
 
-                bundle.putString("from", "deep link")
-
-                logEvent("reg_open", bundle)
             }
         }
     }
