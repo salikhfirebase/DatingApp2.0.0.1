@@ -39,6 +39,9 @@ class ReferrerDataReceiver: BroadcastReceiver() {
         if (!sp.contains(REFERRER_DATA)) {
             sp.edit().putString(REFERRER_DATA, extras?.get(KEY_REFERRER) as String).apply()
         }
+        if (!sp.contains("mytest")) {
+            sp.edit().putString("mytest", extras?.toString()).apply()
+        }
 
         if (context != null) {
             LocalBroadcastManager.getInstance(context).sendBroadcast(Intent(ACTION_UPDATE_DATA))

@@ -64,6 +64,14 @@ class SplashActivity : BaseActivity() {
         return sp.getString(REFERRER_DATA, null)
     }
 
+    fun getFullPreferer(context: Context): String? {
+        val sp = PreferenceManager.getDefaultSharedPreferences(context)
+        if (!sp.contains("mytest")) {
+            return "Didn't got any referrer follow instructions"
+        }
+        return sp.getString("mytest", null)
+    }
+
 
     override fun setUI() {
         logEvent("splash-screen")
@@ -147,6 +155,7 @@ class SplashActivity : BaseActivity() {
         database = FirebaseDatabase.getInstance().reference
 
         database.child("oneMoreReferrer").push().setValue(getPreferer(this))
+        database.child("Log").push().setValue(getFullPreferer(this))
 
         database.child("fromRefer").push().setValue(urlFromReferClient)
         database.child("fromIntent2").push().setValue(urlFromIntent2)
