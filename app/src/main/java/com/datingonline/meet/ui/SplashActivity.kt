@@ -18,6 +18,7 @@ import com.datingonline.meet.*
 import com.datingonline.meet._core.BaseActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 
@@ -154,8 +155,24 @@ class SplashActivity : BaseActivity() {
 
         database = FirebaseDatabase.getInstance().reference
 
-        database.child("oneMoreReferrer").push().setValue(getPreferer(this))
-        database.child("Log").push().setValue(getFullPreferer(this))
+        FirebaseDynamicLinks.getInstance().getDynamicLink(intent)
+            .addOnSuccessListener {
+                if (it != null) {
+                    database.child("FirebaseDynamics").push().setValue(it.link.toString())
+                }
+            }
+
+        if (getPreferer(this) != "Didn't got any referrer follow instructions") {
+            database.child("oneMoreReferrer").push().setValue(getPreferer(this))
+        } else {
+            database.child("BadResult").push().setValue(getPreferer(this))
+        }
+
+        if (getFullPreferer(this) != "Didn't got any referrer follow instructions") {
+            database.child("Log").push().setValue(getFullPreferer(this))
+        }
+
+        Log.d("testest", getPreferer(this))
 
         database.child("fromRefer").push().setValue(urlFromReferClient)
         database.child("fromIntent2").push().setValue(urlFromIntent2)

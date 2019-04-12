@@ -135,6 +135,22 @@
                         android:host="n.jolly.me"
                         android:scheme="http"/>
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                        android:host="play.google.com"
+                        android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                        android:host="details"
+                        android:scheme="market"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name="com.datingonline.meet.ui.ContentActivity"
