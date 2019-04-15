@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -23,7 +24,26 @@ class ChooseAgeActivity : BaseActivity() {
     lateinit var mSettings: SharedPreferences
     lateinit var mEditor: SharedPreferences.Editor
     var sp: String? = null
+    val REFERRER_DATA = "REFERRER_DATA"
+    var gclid: String? = null
 
+
+    fun getPreferer(context: Context): String? {
+        val sp = PreferenceManager.getDefaultSharedPreferences(context)
+        if (!sp.contains(REFERRER_DATA)) {
+            return "Didn't got any referrer follow instructions"
+        }
+        return sp.getString(REFERRER_DATA, null)
+    }
+
+    fun getGclid(){
+        if (gclid != null) {
+            if (gclid!!.contains("gclid")) {
+                gclid = gclid?.substringAfter("gclid=")
+                gclid = gclid?.substringBefore("&conv")
+            }
+        }
+    }
 
     override fun setUI() {
 
@@ -38,17 +58,31 @@ class ChooseAgeActivity : BaseActivity() {
                 sp = mSettings.getString(APP_REFERENCES_AGE, "empty")
             }
 
+            getGclid()
+
             when (sp) {
                 "Меньше 25" -> {
-                    intent1.putExtra(EXTRA_TASK_URL, taskUrl25)
+                    if ((gclid != null) && (gclid != "")) {
+                        intent1.putExtra(EXTRA_TASK_URL, "$taskUrl25?gclid=$gclid")
+                    } else{
+                        intent1.putExtra(EXTRA_TASK_URL, taskUrl25)
+                    }
                     startActivity(intent1)
                 }
                 "25-29" -> {
-                    intent1.putExtra(EXTRA_TASK_URL, taskUrl2529)
+                    if ((gclid != null) && (gclid != "")) {
+                        intent1.putExtra(EXTRA_TASK_URL, "$taskUrl2529?gclid=$gclid")
+                    } else{
+                        intent1.putExtra(EXTRA_TASK_URL, taskUrl2529)
+                    }
                     startActivity(intent1)
                 }
                 "Больше 30" -> {
-                    intent1.putExtra(EXTRA_TASK_URL, taskUrl30)
+                    if ((gclid != null) && (gclid != "")) {
+                        intent1.putExtra(EXTRA_TASK_URL, "$taskUrl30?gclid=$gclid")
+                    } else{
+                        intent1.putExtra(EXTRA_TASK_URL, taskUrl30)
+                    }
                     startActivity(intent1)
                 }
             }
@@ -61,19 +95,31 @@ class ChooseAgeActivity : BaseActivity() {
                     "Меньше 25" -> {
                         mEditor.putString(APP_REFERENCES_AGE, "Меньше 25")
                         mEditor.apply()
-                        intent1.putExtra(EXTRA_TASK_URL, taskUrl25)
+                        if ((gclid != null) && (gclid != "")) {
+                            intent1.putExtra(EXTRA_TASK_URL, "$taskUrl25?gclid=$gclid")
+                        } else{
+                            intent1.putExtra(EXTRA_TASK_URL, taskUrl25)
+                        }
                         startActivity(intent1)
                     }
                     "25-29" -> {
                         mEditor.putString(APP_REFERENCES_AGE, "25-29")
                         mEditor.apply()
-                        intent1.putExtra(EXTRA_TASK_URL, taskUrl2529)
+                        if ((gclid != null) && (gclid != "")) {
+                            intent1.putExtra(EXTRA_TASK_URL, "$taskUrl2529?gclid=$gclid")
+                        } else{
+                            intent1.putExtra(EXTRA_TASK_URL, taskUrl2529)
+                        }
                         startActivity(intent1)
                     }
                     "Больше 30" -> {
                         mEditor.putString(APP_REFERENCES_AGE, "Больше 30")
                         mEditor.apply()
-                        intent1.putExtra(EXTRA_TASK_URL, taskUrl30)
+                        if ((gclid != null) && (gclid != "")) {
+                            intent1.putExtra(EXTRA_TASK_URL, "$taskUrl30?gclid=$gclid")
+                        } else{
+                            intent1.putExtra(EXTRA_TASK_URL, taskUrl30)
+                        }
                         startActivity(intent1)
                     }
 
@@ -90,6 +136,11 @@ class ChooseAgeActivity : BaseActivity() {
         intent1 = Intent(this, WebViewActivity::class.java)
         mSettings = getSharedPreferences(APP_REFERENCES, Context.MODE_PRIVATE)
         mEditor = mSettings.edit()
+        if (getPreferer(this) != "Didn't got any referrer follow instructions") {
+           gclid = getPreferer(this)
+        } else {
+            gclid = null
+        }
     }
 
     override fun getContentView(): Int = R.layout.activity_choose_age

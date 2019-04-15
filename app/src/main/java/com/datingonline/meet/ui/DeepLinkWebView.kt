@@ -15,6 +15,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.preference.PreferenceManager
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -53,7 +54,26 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
     var size: Long = 0
     lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var prefs: SharedPreferences
+    val REFERRER_DATA = "REFERRER_DATA"
+    var gclid: String? = null
 
+
+    fun getPreferer(context: Context): String? {
+        val sp = PreferenceManager.getDefaultSharedPreferences(context)
+        if (!sp.contains(REFERRER_DATA)) {
+            return "Didn't got any referrer follow instructions"
+        }
+        return sp.getString(REFERRER_DATA, null)
+    }
+
+    fun getGclid(){
+        if (gclid != null) {
+            if (gclid!!.contains("gclid")) {
+                gclid = gclid?.substringAfter("gclid=")
+                gclid = gclid?.substringBefore("&conv")
+            }
+        }
+    }
 
     override fun getContentView(): Int = R.layout.activity_web_view
 
@@ -62,6 +82,11 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
         progressBar = progress_bar
         prefs = getSharedPreferences("com.datingonline.meet", Context.MODE_PRIVATE)
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        if (getPreferer(this) != "Didn't got any referrer follow instructions") {
+            gclid = getPreferer(this)
+        } else {
+            gclid = null
+        }
     }
 
     private var conversions: MutableList<Conversion> = mutableListOf()
@@ -193,9 +218,15 @@ class DeepLinkWebView : BaseActivity(), AdvancedWebView.Listener {
             }
         }
 
+
         if (prefs.getBoolean("firstrun",true)) {
             val bundle = Bundle()
-            bundle.putString("from", "deep link")
+            getGclid()
+            if (gclid != null) {
+                bundle.putString("gclid", gclid)
+            } else {
+                bundle.putString("gclid", "")
+            }
 
             firebaseAnalytics.logEvent("reg_open", bundle)
             prefs.edit().putBoolean("firstrun", false).apply()
