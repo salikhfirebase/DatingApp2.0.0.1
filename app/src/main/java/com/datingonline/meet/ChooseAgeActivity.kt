@@ -43,6 +43,8 @@ class ChooseAgeActivity : BaseActivity() {
             if (gclid!!.contains("gclid")) {
                 gclid = gclid?.substringAfter("gclid=")
                 gclid = gclid?.substringBefore("&conv")
+            } else {
+                gclid = null
             }
         }
     }
