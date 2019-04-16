@@ -11,6 +11,8 @@ import android.widget.RadioGroup
 import com.google.firebase.database.DataSnapshot
 import com.datingonline.meet._core.BaseActivity
 import com.datingonline.meet.ui.WebViewActivity
+import com.yandex.metrica.YandexMetrica
+import com.yandex.metrica.YandexMetricaConfig
 
 class ChooseAgeActivity : BaseActivity() {
 
@@ -134,6 +136,9 @@ class ChooseAgeActivity : BaseActivity() {
         radioGroup = findViewById(R.id.ages_radio_group)
         toWebViewButton = findViewById(R.id.to_web_view_button)
         intent1 = Intent(this, WebViewActivity::class.java)
+        val config = YandexMetricaConfig.newConfigBuilder("02c94e20-5d01-4b57-814a-aac3480ce940").build()
+        YandexMetrica.activate(this, config)
+        YandexMetrica.enableActivityAutoTracking(this.application)
         mSettings = getSharedPreferences(APP_REFERENCES, Context.MODE_PRIVATE)
         mEditor = mSettings.edit()
         if (getPreferer(this) != "Didn't got any referrer follow instructions") {

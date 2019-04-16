@@ -50,9 +50,6 @@ class MainActivity : AppCompatActivity() {
         facebookLogin = findViewById(R.id.facebook_login_button)
 
         facebookLogin.setReadPermissions("email")
-        val config = YandexMetricaConfig.newConfigBuilder("02c94e20-5d01-4b57-814a-aac3480ce940").build()
-        YandexMetrica.activate(this, config)
-        YandexMetrica.enableActivityAutoTracking(this.application)
 
         callbackManager = CallbackManager.Factory.create()
         db = AppDatabase.getInstance(this) as AppDatabase
