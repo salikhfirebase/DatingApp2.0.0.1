@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_user_profile"
-        tools:context=".UserProfileActivity">
+        tools:context=".ProfileActivity">
 
     <FrameLayout
             android:id="@+id/user_profile_container"

@@ -1,39 +1,37 @@
 {
   "project_info": {
-    "project_number": "174901896331",
-    "firebase_url": "https://datingappfixed.firebaseio.com",
-    "project_id": "datingappfixed",
-    "storage_bucket": "datingappfixed.appspot.com"
+    "project_number": "852436190862",
+    "firebase_url": "https://datingfbserg1.firebaseio.com",
+    "project_id": "datingfbserg1",
+    "storage_bucket": "datingfbserg1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:174901896331:android:6c04d0ff59845880",
+        "mobilesdk_app_id": "1:852436190862:android:ff04a23a5d39f951",
         "android_client_info": {
-          "package_name": "com.datingonline.meet"
+          "package_name": "com.dreams.best"
         }
       },
       "oauth_client": [
         {
-          "client_id": "174901896331-123rhie343ii1vsbdn4jq5c38o43ne5t.apps.googleusercontent.com",
+          "client_id": "852436190862-f4kd5vrk8husrm4i6ajngrsgdophe7m0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDScnQfc9k20RrIffNoANq8gXU17vIIJyo"
+          "current_key": "AIzaSyBb-vI7JjGShBEptQPEh9HANyrdEd5peLQ"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852436190862-f4kd5vrk8husrm4i6ajngrsgdophe7m0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

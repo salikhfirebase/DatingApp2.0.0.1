@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_messages"
-                android:icon="@drawable/new_post_24"
+                android:icon="@drawable/new_post_24_icon"
                 android:title="Сообщения"/>
         <item
                 android:id="@+id/nav_profile"
@@ -22,7 +22,7 @@
                 android:title="Чат"/>
         <item
                 android:id="@+id/nav_help"
-                android:icon="@drawable/help_24"
+                android:icon="@drawable/help_24_icon"
                 android:title="Помощь"/>
         <item
                 android:id="@+id/nav_feedback"

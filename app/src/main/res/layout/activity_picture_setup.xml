@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+                                                   android:background="#ffcfe2 "
+              tools:context=".fragments.TakePictureFragment">
+
+    <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/taken_picture_image_view"
+            android:src="@drawable/com_facebook_profile_picture_blank_square"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintVertical_bias="0.13"/>
+
+    <Button
+            android:background="#2cb22c"
+            android:fontFamily="sans-serif"
+            android:textAllCaps="false"
+            android:textColor="@color/browser_actions_bg_grey"
+            android:textSize="16sp"
+            android:id="@+id/picture_taking_button"
+            android:text="Сделать фото"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/taken_picture_image_view" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.075"/>
+
+    <Button
+
+            android:background="?attr/selectableItemBackground"
+            android:drawableEnd="@drawable/arrow_right_24_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/the_finish_next_button"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/picture_taking_button" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintVertical_bias="1.0" android:drawableRight="@drawable/arrow_right_24_icon"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    <Button
+            android:text="@string/select_from_gallery"
+            android:background="#2cb22c"
+            android:fontFamily="sans-serif"
+            android:textAllCaps="false"
+            android:textColor="@color/browser_actions_bg_grey"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/select_picture_button" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/picture_taking_button" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintVertical_bias="0.0" app:layout_constraintBottom_toBottomOf="@+id/the_finish_next_button"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

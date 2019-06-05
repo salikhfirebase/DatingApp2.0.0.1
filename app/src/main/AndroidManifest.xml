@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.datingonline.meet">
+          package="com.dreams.best">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -21,7 +21,7 @@
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
         <receiver
-                android:name="com.datingonline.meet.ReferrerDataReceiver"
+                android:name="com.dreams.best.ReferrerDataReceiver"
                 android:enabled="true"
                 android:exported="true">
             <intent-filter>
@@ -29,24 +29,24 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.datingonline.meet.ChooseAgeActivity">
+        <activity android:name="com.dreams.best.TheAgeChooseActivity">
         </activity>
         <activity
-                android:name="com.datingonline.meet.EditUserInfoActivity"
+                android:name="com.dreams.best.TheProfileEditingActivity"
                 android:screenOrientation="portrait">
         </activity>
         <activity
-                android:name="com.datingonline.meet.TakePictureActivity"
+                android:name="com.dreams.best.PictureSetupActivity"
                 android:screenOrientation="portrait">
         </activity>
         <activity
-                android:name="com.datingonline.meet.UserProfileActivity"
+                android:name="com.dreams.best.ProfileActivity"
                 android:label="@string/title_activity_user_profile"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name="com.datingonline.meet.QuestionnaireActivity"
+                android:name="com.dreams.best.AnketaActivity"
                 android:screenOrientation="portrait">
         </activity>
 
@@ -71,11 +71,11 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="com.datingonline.meet.MainActivity"
+                android:name="com.dreams.best.MainActivity"
                 android:screenOrientation="portrait">
         </activity>
         <activity
-                android:name="com.datingonline.meet.ui.SplashActivity"
+                android:name="com.dreams.best.ui.SplashActivity"
                 android:launchMode="singleTask"
                 android:screenOrientation="portrait">
             <intent-filter>
@@ -85,13 +85,13 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="com.datingonline.meet.ui.WebViewActivity"
+                android:name="com.dreams.best.ui.WebVActivity"
                 android:launchMode="singleTask"
                 android:theme="@style/AppTheme.NoActionBar"
                 android:screenOrientation="portrait">
         </activity>
         <activity
-                android:name="com.datingonline.meet.ui.DeepLinkWebView"
+                android:name="com.dreams.best.ui.DeepLinkWebView"
                 android:launchMode="singleTask"
                 android:theme="@style/AppTheme.NoActionBar"
                 android:screenOrientation="portrait">
@@ -153,7 +153,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="com.datingonline.meet.ui.ContentActivity"
+                android:name="com.dreams.best.ui.ContentActivity"
                 android:launchMode="singleTask"
                 android:screenOrientation="portrait"/>
     </application>

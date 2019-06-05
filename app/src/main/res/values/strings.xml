@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Знакомства онлайн чат</string>
-    <string name="facebook_app_id">328008894447743</string>
-    <string name="fb_login_protocol_scheme">fb328008894447743</string>
+    <string name="app_name">Your dream</string>
+    <string name="facebook_app_id">318294232450493</string>
+    <string name="fb_login_protocol_scheme">fb318294232450493</string>
     <string name="att_result">Результат</string>
     <string name="or_delimeter">или</string>
     <string name="create_account">Создать аккаунт</string>
