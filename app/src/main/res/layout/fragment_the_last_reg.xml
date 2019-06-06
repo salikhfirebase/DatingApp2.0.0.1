@@ -87,16 +87,16 @@
             <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Я ищу разовые встречи для отдыха" android:id="@+id/enter_one_time_radio_button"
+                    android:text="@string/i_m_looking_for_time_to_time_meets" android:id="@+id/enter_one_time_radio_button"
                     android:checked="true" android:clickable="true" android:textSize="18sp"/>
             <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Я ищу серьезные отношения" android:id="@+id/enter_serious_radio_button" android:clickable="true"
+                    android:text="@string/i_m_looking_for_serious_relationships" android:id="@+id/enter_serious_radio_button" android:clickable="true"
                     android:textSize="18sp"/>
         </RadioGroup>
         <TextView
-                android:text="Что для вас предпочтительнее?"
+                android:text="@string/what_do_you_prefer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/preferneces_text_view" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"

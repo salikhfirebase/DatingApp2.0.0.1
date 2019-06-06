@@ -194,7 +194,7 @@
                 app:layout_constraintVertical_bias="0.0" app:layout_constraintTop_toBottomOf="@+id/edit_race_txt_view">
 
             <RadioButton
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/i_m_a_single_person" android:id="@+id/enter_single_person_rbutton"
                     android:checked="true" android:clickable="true"/>

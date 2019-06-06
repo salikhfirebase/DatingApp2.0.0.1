@@ -11,7 +11,7 @@
             android:id="@+id/enter_other_tview"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Мы отправили код на вашу почту для подтверждения"
+            android:text="@string/we_sent_confirmation_to_your_account"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"

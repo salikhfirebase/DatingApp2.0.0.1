@@ -77,7 +77,7 @@ class TheLastRegFragment : Fragment() {
                 startActivity(intent1)
 
             } else {
-                Toast.makeText(this.requireContext(), "Примите правила пользования", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.requireContext(), "Accept terms and conditions", Toast.LENGTH_SHORT).show()
             }
 
         }

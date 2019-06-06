@@ -128,7 +128,7 @@ class PictureSetupActivity : AppCompatActivity() {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 } else {
-                    Toast.makeText(this, "Вы не дали доступ", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "You didn't give access", Toast.LENGTH_SHORT).show()
                 }
             }
         }

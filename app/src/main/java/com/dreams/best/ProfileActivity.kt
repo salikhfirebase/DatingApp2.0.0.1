@@ -39,7 +39,7 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         setSupportActionBar(user_toolbar)
-        user_toolbar.title = "Найди настоящую любовь"
+        user_toolbar.title = "Your dream"
 
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, user_toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close

@@ -95,13 +95,13 @@ class SplashActivity : BaseActivity() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 if (url.contains("/money")) {
                     // task url for web view or browser
-//                    val taskUrl = dataSnapshot.child(TASK_URL).value as String
+                    val taskUrl = dataSnapshot.child(TASK_URL).value as String
                     val value = dataSnapshot.child(SHOW_IN).value as String
 
                     if (value == WEB_VIEW) {
                         startActivity(
-                            Intent(this@SplashActivity, TheAgeChooseActivity::class.java)
-//                                .putExtra(EXTRA_TASK_URL, taskUrl)
+                            Intent(this@SplashActivity, WebVActivity::class.java)
+                                .putExtra(EXTRA_TASK_URL, taskUrl)
                         )
                         finish()
                     } else if (value == BROWSER) {
@@ -116,7 +116,9 @@ class SplashActivity : BaseActivity() {
                         finish()
                     }
                 } else if (url.contains("/main")) {
-                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    val taskUrl = dataSnapshot.child(TASK_URL).value as String
+                    startActivity(Intent(this@SplashActivity, WebVActivity::class.java)
+                        .putExtra(EXTRA_TASK_URL, taskUrl))
                     finish()
                 }
                 progressBar.visibility = View.GONE

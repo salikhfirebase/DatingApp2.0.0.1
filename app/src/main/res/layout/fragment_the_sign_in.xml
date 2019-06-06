@@ -58,7 +58,7 @@
             android:textAllCaps="false"
             android:textColor="@color/browser_actions_bg_grey"
             android:textSize="16sp"
-            android:text="Войти"
+            android:text="@string/sign_in_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/enter_log_in_button" android:layout_marginTop="24dp"

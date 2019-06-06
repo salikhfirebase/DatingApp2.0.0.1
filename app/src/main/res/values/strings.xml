@@ -2,23 +2,23 @@
     <string name="app_name">Your dream</string>
     <string name="facebook_app_id">318294232450493</string>
     <string name="fb_login_protocol_scheme">fb318294232450493</string>
-    <string name="att_result">Результат</string>
-    <string name="or_delimeter">или</string>
-    <string name="create_account">Создать аккаунт</string>
+    <string name="att_result">Result</string>
+    <string name="or_delimeter">or</string>
+    <string name="create_account">Create account</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="nickname">Ник</string>
-    <string name="birth_date">Дата рождения</string>
-    <string name="your_nickname">Ваш никнейм</string>
-    <string name="what_are_you_like">Как вы выглядите?</string>
-    <string name="height">Рост</string>
+    <string name="nickname">Nick</string>
+    <string name="birth_date">Birth date</string>
+    <string name="your_nickname">Your nick</string>
+    <string name="what_are_you_like">What are you look like?</string>
+    <string name="height">Height</string>
     <string name="default_seekbar">0.0</string>
-    <string name="weight_seekbar">Вес</string>
+    <string name="weight_seekbar">Weight</string>
     <string name="default_weight">0.0</string>
-    <string name="race">Раса:</string>
-    <string name="reg_form_email">Почта</string>
-    <string name="reg_form_password">Пароль</string>
+    <string name="race">Race:</string>
+    <string name="reg_form_email">Email</string>
+    <string name="reg_form_password">Password</string>
 
     <string-array name="days">
         <item>01</item>
@@ -55,18 +55,18 @@
     </string-array>
 
     <string-array name="months">
-        <item>январь</item>
-        <item>февраль</item>
-        <item>март</item>
-        <item>апрель</item>
-        <item>май</item>
-        <item>июнь</item>
-        <item>июль</item>
-        <item>август</item>
-        <item>сентябрь</item>
-        <item>октябрь</item>
-        <item>ноябрь</item>
-        <item>декабрь</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
     </string-array>
 
     <string-array name="years">
@@ -135,33 +135,47 @@
     </string-array>
 
     <string-array name="races">
-        <item>Европиоидная</item>
-        <item>Темнокожая (AA)</item>
-        <item>Азиатская</item>
-        <item>Латино</item>
-        <item>Ам. Индеец</item>
-        <item>Кор. Гавайская</item>
+        <item>White</item>
+        <item>Black (AA)</item>
+        <item>Asian</item>
+        <item>Latino</item>
+        <item>Am. Indian</item>
+        <item>Nat. Hawaiian</item>
     </string-array>
     <string name="title_activity_user_profile">UserProfileActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Заголовок</string>
-    <string name="action_settings">Настройки</string>
-    <string name="other_data_text_view">Обо мне</string>
-    <string name="have_house_text_view">У меня есть дом</string>
-    <string name="have_car_text_view">У меня есть машина</string>
-    <string name="i_m_a_single_person">Я один</string>
-    <string name="we_are_a_couple">Мы пара</string>
-    <string name="have_motorcycle_text_view">У меня есть мотоцикл</string>
-    <string name="make_it_clear">Хотелось прояснить *</string>
-    <string name="optional_text_view">* Необязательно</string>
-    <string name="agreement_checkbox">Я принимаю</string>
-    <string name="terms_and_conditions">Правила и условия использования</string>
-    <string name="select_from_gallery">Выбрать из галереи</string>
+    <string name="nav_header_desc">Header</string>
+    <string name="action_settings">Settings</string>
+    <string name="other_data_text_view">Other data</string>
+    <string name="have_house_text_view">I have a house</string>
+    <string name="have_car_text_view">I have a car</string>
+    <string name="i_m_a_single_person">I\'m a single person</string>
+    <string name="we_are_a_couple">We are couple</string>
+    <string name="have_motorcycle_text_view">I have a motorcycle</string>
+    <string name="make_it_clear">I want to make clear *</string>
+    <string name="optional_text_view">* Optional</string>
+    <string name="agreement_checkbox">I accept</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="select_from_gallery">Choose from gallery</string>
     <string name="your_age">Ваш возраст</string>
     <string name="less_twenty_five">Меньше 25</string>
     <string name="twenty_five_nine">25-29</string>
     <string name="more_thirty">Больше 30</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="we_sent_confirmation_to_your_account">We sent confirmation to your account</string>
+    <string name="i_m_looking_for_time_to_time_meets">I\'m looking for time to time meets</string>
+    <string name="i_m_looking_for_serious_relationships">I\'m looking for serious relationships</string>
+    <string name="what_do_you_prefer">What do you prefer?</string>
+    <string name="sign_in_text">Sign In</string>
+    <string name="take_a_picture">Take a picture</string>
+    <string name="messages">Messages</string>
+    <string name="profile">Profile</string>
+    <string name="free_stars">Free stars</string>
+    <string name="chat">Chat</string>
+    <string name="help">Help</string>
+    <string name="feedback">Feedback</string>
+    <string name="log_out">Log out</string>
 </resources>

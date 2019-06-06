@@ -95,7 +95,7 @@
             app:layout_constraintVertical_bias="0.139"
             android:onClick="onCreateAccButtonClick"/>
     <TextView
-            android:text="Уже зарегистрированы?"
+            android:text="@string/already_have_an_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/have_acc_text_view" android:layout_marginTop="8dp"
@@ -106,7 +106,7 @@
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:textColor="@android:color/white"
             app:layout_constraintHorizontal_bias="0.317" app:layout_constraintVertical_bias="0.534"/>
     <TextView
-            android:text="Войти"
+            android:text="@string/sign_in_text"
             android:layout_width="wrap_content"
             android:clickable="true"
             android:onClick="onSignInButtonClick"

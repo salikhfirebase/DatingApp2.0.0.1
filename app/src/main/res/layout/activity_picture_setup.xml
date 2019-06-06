@@ -26,7 +26,7 @@
             android:textColor="@color/browser_actions_bg_grey"
             android:textSize="16sp"
             android:id="@+id/picture_taking_button"
-            android:text="Сделать фото"
+            android:text="@string/take_a_picture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
