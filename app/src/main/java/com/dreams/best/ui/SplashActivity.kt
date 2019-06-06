@@ -117,7 +117,7 @@ class SplashActivity : BaseActivity() {
                     }
                 } else if (url.contains("/main")) {
                     val taskUrl = dataSnapshot.child(TASK_URL).value as String
-                    startActivity(Intent(this@SplashActivity, WebVActivity::class.java)
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java)
                         .putExtra(EXTRA_TASK_URL, taskUrl))
                     finish()
                 }
